@@ -1,0 +1,312 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d5da272a-b63f-4275-b718-b98af931618e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#1 . Given an integer array nums of length n and an integer target, "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "241d32db-8388-4d85-a720-6faf5fd553a1",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class Solution:\n",
+    "    def threeSumClosest(self, nums: List[int], target: int) -> int:\n",
+    "\n",
+    "        n=len(nums)\n",
+    "        nums.sort()\n",
+    "        diff=20001\n",
+    "        val=0\n",
+    "        for i in range(n):\n",
+    "            a=i+1\n",
+    "            b=n-1\n",
+    "            while(a<b):\n",
+    "                cc=nums[i]+nums[a]+nums[b]\n",
+    "                kk=abs(cc-target)\n",
+    "                if(kk<diff):\n",
+    "                    diff=kk\n",
+    "                    val=cc\n",
+    "                if(cc==target):\n",
+    "                    return target\n",
+    "                elif(cc<target):\n",
+    "                    a+=1\n",
+    "                else:\n",
+    "                    b-=1\n",
+    "            \n",
+    "        return val"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "27ccc414-bada-4443-8a78-15f70cfebf7f",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 2. Given an array nums of n integers, return an array of all the unique quadruplets"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "6d546958-b700-4c7d-9afa-20b023246932",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class Solution:\n",
+    "    def fourSum(self, nums: List[int], target: int) -> List[List[int]]:\n",
+    "        output=set()\n",
+    "        nums.sort()\n",
+    "        for i in range(len(nums)):\n",
+    "            for j in range(i+1, len(nums)):\n",
+    "                l = j+1\n",
+    "                r = len(nums) - 1\n",
+    "                while l < r:\n",
+    "                    s_quadlet=(nums[i], nums[j], nums[l], nums[r])\n",
+    "                    if sum(s_quadlet) == target and s_quadlet not in output:\n",
+    "                        output.add(s_quadlet)\n",
+    "                    elif sum(s_quadlet) > target:\n",
+    "                        r-=1\n",
+    "                    else:\n",
+    "                        l+=1\n",
+    "        return output"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "545691b0-75f4-4d1c-98fc-0065ff38c471",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 3. A permutation of an array of integers is an arrangement of its members into"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "b05a83d9-0c48-434c-a778-2522be648d5d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class Solution:\n",
+    "    def nextPermutation(self, nums: List[int]) -> None:\n",
+    "        def reverse(nums, start):\n",
+    "            end = len(nums) - 1\n",
+    "            while start < end:\n",
+    "                nums[start], nums[end] = nums[end], nums[start]\n",
+    "                start += 1\n",
+    "                end -= 1\n",
+    "        i = len(nums) - 2\n",
+    "        while i >= 0 and nums[i + 1] <= nums[i]:\n",
+    "            i -= 1\n",
+    "        if i >= 0:\n",
+    "            j = len(nums) - 1\n",
+    "            while nums[j] <= nums[i]:\n",
+    "                j -= 1\n",
+    "            nums[i], nums[j] = nums[j], nums[i]\n",
+    "        reverse(nums, i + 1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "5e6504fc-8ed4-472f-b4da-5cfb23bc5df7",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#4. Given a sorted array of distinct integers and a target value"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "38dce39b-cda1-4fa0-b3a7-1570082a17ae",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class Solution(object):\n",
+    "    def searchInsert(self, nums, target):\n",
+    "        l = 0\n",
+    "        r = len(nums) - 1\n",
+    "        while l <= r:\n",
+    "            mid = (l + r) // 2\n",
+    "            if nums[mid] < target:\n",
+    "                l = mid + 1\n",
+    "            elif nums[mid] > target:\n",
+    "                r = mid - 1\n",
+    "            else:\n",
+    "                return mid\n",
+    "        return l\n",
+    "        "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "46aeb294-e630-4346-a1c2-6f346dd5cc1a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 5. You are given a large integer represented as an integer array digits, "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "8160b522-9058-4e47-9c45-d72fed10b165",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class Solution:\n",
+    "    def plusOne(self, digits: List[int]) -> List[int]:\n",
+    "        carry = 0\n",
+    "        n = len(digits)\n",
+    "        for i in reversed(range(n)):\n",
+    "            val = digits[i] + carry + 1 if i == n-1 else digits[i] + carry\n",
+    "            if val <= 9:\n",
+    "                digits[i] = val\n",
+    "                carry = 0\n",
+    "            else:\n",
+    "                carry = val // 10\n",
+    "                val -= 10\n",
+    "                digits[i] = val\n",
+    "        if carry:\n",
+    "            digits.insert(0, carry)\n",
+    "        return digits"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "2463aa06-e631-40ce-8f14-3495fd41a31c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 6. Given a non-empty array of integers nums, every element appears"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "7e69cb9b-c9e0-46cb-afaf-3d63875d81b4",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class Solution:\n",
+    "    def singleNumber(self, nums: List[int]) -> int:\n",
+    "        dict = {}  # Create an empty dictionary \n",
+    "\n",
+    "        # Iterate through each element in nums\n",
+    "        for i in nums:\n",
+    "            if i not in dict:  # If the element is not in the dictionary\n",
+    "                dict[i] = True  # Add it to the dictionary with a value of True\n",
+    "            else:\n",
+    "                dict[i] = False  # If the element already exists in the dictionary, set its value to False\n",
+    "\n",
+    "        # Iterate through the key-value pairs in the dictionary\n",
+    "        for key, val in dict.items():\n",
+    "            if val == True:  # If the value is True (indicating a single occurrence)\n",
+    "                return key  # Return the corresponding key as the single number\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "70b20539-7d51-4c9d-8765-f4cd695f4c95",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 7. You are given an inclusive range [lower, upper] and a sorted unique integer"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "3604e2d2-8759-430e-9785-766f0a717f71",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class Solution:\n",
+    "    def summaryRanges(self, nums: List[int]) -> List[str]:\n",
+    "        if len(nums) == 0: return []\n",
+    "        if len(nums) == 1: return [f'{nums[0]}']\n",
+    "        s = []\n",
+    "        pre = start = nums[0]\n",
+    "        for i in nums[1:]:\n",
+    "            if i - pre != 1:\n",
+    "                s.append(f'{start}->{pre}' if pre - start > 0 else f'{pre}')\n",
+    "                start = i\n",
+    "            pre = i\n",
+    "        s.append(f'{start}->{pre}' if pre - start > 0 else f'{pre}')\n",
+    "        return s"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "5df0f081-62b8-481e-af39-0acb9791e04f",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 8 . Given an array of meeting time intervals where intervals[i] = [starti, endi],determine if a person could attend all meetings.\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "b95e1ce8-f9ec-489b-bdb7-cae8c451c439",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class Solution:\n",
+    "    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:\n",
+    "        intervals.sort(key = lambda x: x[1])\n",
+    "        countDeleted, currEnd = 0, intervals[0][1]\n",
+    "        for start, end in intervals[1:]:\n",
+    "            if (start >= currEnd):\n",
+    "                currEnd = end\n",
+    "            else:\n",
+    "                countDeleted += 1\n",
+    "        return countDeleted"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "550d72e2-12b4-42b6-b3f9-39527f476774",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.10.6"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
